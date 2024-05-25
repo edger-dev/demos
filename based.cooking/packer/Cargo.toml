@@ -1,0 +1,26 @@
+[package]
+publish = false
+name = "based-cooking-packer"
+version = "0.1.0"
+
+edition.workspace = true
+license.workspace = true
+homepage.workspace = true
+repository.workspace = true
+authors.workspace = true
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+edger_tui_app = { workspace = true }
+
+tracing = { workspace = true }
+clap = { workspace = true }
+snafu = { workspace = true }
+serde = { workspace = true }
+tokio = { workspace = true }
+surrealdb = { workspace = true }
+walkdir = { workspace = true }
+markdown = { workspace = true }
+gray_matter = { workspace = true }
+surql-definition = { workspace = true }

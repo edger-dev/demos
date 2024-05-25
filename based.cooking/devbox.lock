@@ -1,0 +1,149 @@
+{
+  "lockfile_version": "1",
+  "packages": {
+    "bun@latest": {
+      "last_modified": "2024-05-15T12:04:30Z",
+      "resolved": "github:NixOS/nixpkgs/b3fcfcfabd01b947a1e4f36622bbffa3985bdac6#bun",
+      "source": "devbox-search",
+      "version": "1.1.8",
+      "systems": {
+        "aarch64-darwin": {
+          "outputs": [
+            {
+              "name": "out",
+              "path": "/nix/store/1mx77jj195cadxzj3dd6gzgyigb4xjgh-bun-1.1.8",
+              "default": true
+            }
+          ],
+          "store_path": "/nix/store/1mx77jj195cadxzj3dd6gzgyigb4xjgh-bun-1.1.8"
+        },
+        "aarch64-linux": {
+          "outputs": [
+            {
+              "name": "out",
+              "path": "/nix/store/x8d9gwx47z6sihl3wmvkbxzhly8gy712-bun-1.1.8",
+              "default": true
+            }
+          ],
+          "store_path": "/nix/store/x8d9gwx47z6sihl3wmvkbxzhly8gy712-bun-1.1.8"
+        },
+        "x86_64-darwin": {
+          "outputs": [
+            {
+              "name": "out",
+              "path": "/nix/store/91ik0p9ayfhz3ygj3wk8ibgv24nc38qk-bun-1.1.8",
+              "default": true
+            }
+          ],
+          "store_path": "/nix/store/91ik0p9ayfhz3ygj3wk8ibgv24nc38qk-bun-1.1.8"
+        },
+        "x86_64-linux": {
+          "outputs": [
+            {
+              "name": "out",
+              "path": "/nix/store/ckwisxpv8d8mxpnyga9653wssjk5j8ss-bun-1.1.8",
+              "default": true
+            }
+          ],
+          "store_path": "/nix/store/ckwisxpv8d8mxpnyga9653wssjk5j8ss-bun-1.1.8"
+        }
+      }
+    },
+    "surrealdb-migrations@latest": {
+      "last_modified": "2024-05-18T19:54:07Z",
+      "resolved": "github:NixOS/nixpkgs/02923630b89aa1ab36ef8e422501a6f4fd4b2016#surrealdb-migrations",
+      "source": "devbox-search",
+      "version": "1.5.0",
+      "systems": {
+        "aarch64-darwin": {
+          "outputs": [
+            {
+              "name": "out",
+              "path": "/nix/store/8bfnqj327zhp7qipqgmr7wlz6dgmw087-surrealdb-migrations-1.5.0",
+              "default": true
+            }
+          ],
+          "store_path": "/nix/store/8bfnqj327zhp7qipqgmr7wlz6dgmw087-surrealdb-migrations-1.5.0"
+        },
+        "aarch64-linux": {
+          "outputs": [
+            {
+              "name": "out",
+              "path": "/nix/store/dsg9bw4zmdqsz7sbd6524f89q5a4mz8r-surrealdb-migrations-1.5.0",
+              "default": true
+            }
+          ],
+          "store_path": "/nix/store/dsg9bw4zmdqsz7sbd6524f89q5a4mz8r-surrealdb-migrations-1.5.0"
+        },
+        "x86_64-darwin": {
+          "outputs": [
+            {
+              "name": "out",
+              "path": "/nix/store/vrlpa97yawnbkvzvlbwwcziigngqgj56-surrealdb-migrations-1.5.0",
+              "default": true
+            }
+          ],
+          "store_path": "/nix/store/vrlpa97yawnbkvzvlbwwcziigngqgj56-surrealdb-migrations-1.5.0"
+        },
+        "x86_64-linux": {
+          "outputs": [
+            {
+              "name": "out",
+              "path": "/nix/store/qxnycsq199a5lk4ygz2sl3jai4z8y52i-surrealdb-migrations-1.5.0",
+              "default": true
+            }
+          ],
+          "store_path": "/nix/store/qxnycsq199a5lk4ygz2sl3jai4z8y52i-surrealdb-migrations-1.5.0"
+        }
+      }
+    },
+    "surrealdb@latest": {
+      "last_modified": "2024-05-22T06:18:38Z",
+      "resolved": "github:NixOS/nixpkgs/3f316d2a50699a78afe5e77ca486ad553169061e#surrealdb",
+      "source": "devbox-search",
+      "version": "1.5.0",
+      "systems": {
+        "aarch64-darwin": {
+          "outputs": [
+            {
+              "name": "out",
+              "path": "/nix/store/iir4rhafxrhch5nhlhjcgv5k02mxvs7k-surrealdb-1.5.0",
+              "default": true
+            }
+          ],
+          "store_path": "/nix/store/iir4rhafxrhch5nhlhjcgv5k02mxvs7k-surrealdb-1.5.0"
+        },
+        "aarch64-linux": {
+          "outputs": [
+            {
+              "name": "out",
+              "path": "/nix/store/cqdkx7xypk4xr51za6ci2g75g4d825ds-surrealdb-1.5.0",
+              "default": true
+            }
+          ],
+          "store_path": "/nix/store/cqdkx7xypk4xr51za6ci2g75g4d825ds-surrealdb-1.5.0"
+        },
+        "x86_64-darwin": {
+          "outputs": [
+            {
+              "name": "out",
+              "path": "/nix/store/6afzld4jzkngllnazhv0q09y9pxayqql-surrealdb-1.5.0",
+              "default": true
+            }
+          ],
+          "store_path": "/nix/store/6afzld4jzkngllnazhv0q09y9pxayqql-surrealdb-1.5.0"
+        },
+        "x86_64-linux": {
+          "outputs": [
+            {
+              "name": "out",
+              "path": "/nix/store/fq21898ahjf8sf5pybs41m60nc4lyfnk-surrealdb-1.5.0",
+              "default": true
+            }
+          ],
+          "store_path": "/nix/store/fq21898ahjf8sf5pybs41m60nc4lyfnk-surrealdb-1.5.0"
+        }
+      }
+    }
+  }
+}

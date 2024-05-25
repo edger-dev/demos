@@ -1,0 +1,20 @@
+---
+export const prerender = false;
+
+import SvelteApp from "@app/App.svelte";
+---
+
+<!doctype html>
+<html lang="en">
+    <meta charset="UTF-8" />
+    <meta name="description" content="Astro description" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="generator" content={Astro.generator} />
+    <title>JOUR. App</title>
+
+    <body class="bg-white dark:bg-gray-900">
+        <SvelteApp client:only="svelte" />
+    </body>
+</html>
+

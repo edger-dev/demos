@@ -1,0 +1,8 @@
+{
+  "$schema": "https://raw.githubusercontent.com/jetpack-io/devbox/0.10.1/.schema/devbox.schema.json",
+  "packages": [
+    "surrealdb@latest",
+    "surrealdb-migrations@latest",
+    "bun@latest"
+  ]
+}

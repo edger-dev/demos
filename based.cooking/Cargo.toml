@@ -1,0 +1,30 @@
+[workspace.package]
+edition = "2021"
+license = "MIT"
+homepage = "https://github.com/edger-dev/demos/based.cooking"
+repository = "https://github.com/edger-dev/demos/based.cooking"
+authors = ["YJ Park <yjpark@gmail.com>"]
+
+[workspace]
+members = [
+    "packer",
+]
+resolver = "2"
+
+[workspace.dependencies]
+edger_tui_app = { path = "../../crates/tui/app" }
+# edger_tui_app = { git = "https://github.com/edger-dev/crates", branch = "main" }
+
+tracing = "0.1"
+clap = { version = "4", features = [ "derive" ] }
+snafu = "0.8"
+serde = "1"
+
+tokio = { version = "1", features = [ "full" ] }
+surrealdb = "1"
+
+walkdir = "2"
+markdown = "1.0.0-alpha"
+gray_matter = "0.2"
+
+surql-definition = { version = "0.2.1", features = ["compile_query_validation"] }
