@@ -53,7 +53,7 @@
     </div>
     <NavUl>
         <NavLi href="/">Home</NavLi>
-        <NavLi href="https://github.com/egder-dev/demos/based.cooking/">GitHub</NavLi>
+        <NavLi href="https://github.com/edger-dev/demos/tree/main/based.cooking">GitHub</NavLi>
         <NavLi href="https://edger.substack.com/">Blog</NavLi>
         <NavLi href="https://based.cooking/">Original</NavLi>
     </NavUl>
