@@ -1,16 +1,9 @@
 # Based Cooking Demo
 
-Convert the content to parquet format, load it in browser with duckdb.wasm, then do all 
+Create the content in surrealdb, export as surql, load it in browser with surrealdb.wasm, then do all queries locally.
 
-## DuckDB
+## SurrealDB
 
-
-### Links
-
-- https://duckdb.org/docs/api/wasm/overview
-
-
-### May Use
-
-- https://github.com/rpbouman/huey
-- https://github.com/tconbeer/harlequin
+- https://github.com/surrealdb/surrealdb
+- https://github.com/surrealdb/surrealdb.wasm
+- https://github.com/surrealdb/surrealist
