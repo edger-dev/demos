@@ -9,6 +9,6 @@ dev:
     just copy-headers
     npx wrangler pages dev dist --ip 0.0.0.0
 
-deploy-production:
+deploy:
     just copy-headers
     npx wrangler pages deploy
