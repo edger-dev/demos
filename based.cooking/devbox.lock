@@ -49,6 +49,54 @@
         }
       }
     },
+    "nodePackages.wrangler@latest": {
+      "last_modified": "2024-05-12T16:19:40Z",
+      "resolved": "github:NixOS/nixpkgs/3281bec7174f679eabf584591e75979a258d8c40#nodePackages.wrangler",
+      "source": "devbox-search",
+      "version": "3.34.2",
+      "systems": {
+        "aarch64-darwin": {
+          "outputs": [
+            {
+              "name": "out",
+              "path": "/nix/store/yv7w7b06ppv3ybpv4wd20s8ph0a513bl-wrangler-3.34.2",
+              "default": true
+            }
+          ],
+          "store_path": "/nix/store/yv7w7b06ppv3ybpv4wd20s8ph0a513bl-wrangler-3.34.2"
+        },
+        "aarch64-linux": {
+          "outputs": [
+            {
+              "name": "out",
+              "path": "/nix/store/d02658ysmp8bpdx3xficlwwqf8gky5az-wrangler-3.34.2",
+              "default": true
+            }
+          ],
+          "store_path": "/nix/store/d02658ysmp8bpdx3xficlwwqf8gky5az-wrangler-3.34.2"
+        },
+        "x86_64-darwin": {
+          "outputs": [
+            {
+              "name": "out",
+              "path": "/nix/store/82p10zj3kh2zrlv7k2bvh429923r2dbx-wrangler-3.34.2",
+              "default": true
+            }
+          ],
+          "store_path": "/nix/store/82p10zj3kh2zrlv7k2bvh429923r2dbx-wrangler-3.34.2"
+        },
+        "x86_64-linux": {
+          "outputs": [
+            {
+              "name": "out",
+              "path": "/nix/store/dzi45109f3382fnkfap6lmg20nn6kw7x-wrangler-3.34.2",
+              "default": true
+            }
+          ],
+          "store_path": "/nix/store/dzi45109f3382fnkfap6lmg20nn6kw7x-wrangler-3.34.2"
+        }
+      }
+    },
     "surrealdb-migrations@latest": {
       "last_modified": "2024-05-18T19:54:07Z",
       "resolved": "github:NixOS/nixpkgs/02923630b89aa1ab36ef8e422501a6f4fd4b2016#surrealdb-migrations",
