@@ -81,7 +81,7 @@ export async function connect(init?: string) {
                 if (isSignup) {
                     await register(buildScopeAuth(options), surreal);
                 } else {
-                    await authenticate(auth, surreal, options);
+                    await authenticate(auth, options, surreal);
                 }
             } catch {
                 throw new Error("Authentication failed");
@@ -241,8 +241,8 @@ export async function register(auth: ScopeAuth, surreal?: Surreal) {
  */
 export async function authenticate(
     auth: AuthDetails,
-    surreal?: Surreal,
-    options: ConnectionOptions
+    options: ConnectionOptions,
+    surreal?: Surreal
 ) {
     surreal ??= SURREAL;
     console.log("[surreal] authenticate:", options.authMode, auth);
@@ -273,7 +273,7 @@ export async function authenticate(
 export async function executeQuery<T extends unknown[]>(
     query: string | PreparedQuery,
     bindings?: Record<string, unknown>
-): QueryResponse {
+): Promise<QueryResponse> {
     if (!states.connected.get()) {
         throw new Error("Not connected");
     }
@@ -301,7 +301,7 @@ export async function executeQuery<T extends unknown[]>(
 export async function executeBatch<T extends unknown[]>(
     query: string | PreparedQuery,
     bindings?: Record<string, unknown>
-): QueryResponse[] {
+): Promise<QueryResponse[]> {
     if (!states.connected.get()) {
         throw new Error("Not connected");
     }

@@ -10,19 +10,8 @@ export default defineConfig({
     ],
     output: "static",
     vite: {
-        build: {
-            target: "esnext",
-        },
-        esbuild: {
-		    supported: {
-			    'top-level-await': true //browsers can handle top-level-await features
-		    },
-        },
         optimizeDeps: {
 		    exclude: ['surrealdb.wasm', 'surrealql.wasm'],
-		    esbuildOptions: {
-			    target: 'esnext',
-		    },
-	    },
+	    }
     }
 });
