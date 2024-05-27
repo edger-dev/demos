@@ -12,6 +12,12 @@ export default defineConfig({
     vite: {
         optimizeDeps: {
 		    exclude: ['surrealdb.wasm', 'surrealql.wasm'],
-	    }
-    }
+	    },
+        resolve: {
+          preserveSymlinks: true
+        }
+    },
+    experimental: {
+        contentCollectionCache: true,
+    },
 });

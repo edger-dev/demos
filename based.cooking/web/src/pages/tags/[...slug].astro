@@ -1,0 +1,58 @@
+---
+import { Button, Card, Badge, Heading } from "flowbite-svelte";
+import { getCollection } from "astro:content";
+import RecipeGrid from "@components/RecipeGrid.svelte";
+
+import { type Recipe, type RecipeEntry } from "src/types";
+
+import Layout from "@layouts/Layout.astro";
+import TagHead from "@components/TagHead.svelte";
+
+export async function getStaticPaths() {
+    let all: string[] = [];
+    let tags = new Map<string, RecipeEntry[]>();
+    const recipes = await getCollection("recipes");
+    recipes.forEach((entry) => {
+        entry.data.tags?.forEach((tag) => {
+            const exist = tags.get(tag);
+            if (exist) {
+                exist.push(entry);
+            } else {
+                tags.set(tag, [entry]);
+                all.push(tag);
+            }
+        });
+    });
+    return Array.from(tags.entries()).map((entry) => ({
+        params: { slug: entry[0] },
+        props: {
+            tag: entry[0],
+            all: all,
+            entries: entry[1],
+        },
+    }));
+}
+
+interface Props {
+    tag: string;
+    all: string[];
+    entries: RecipeEntry[];
+}
+
+const { tag, all, entries } = Astro.props;
+
+const recipes = entries.map((entry) => {
+    return {
+        slug: entry.slug,
+        text: entry.body,
+        data: entry.data,
+    } as Recipe;
+});
+---
+
+<Layout title={tag}>
+    <TagHead client:load slug={tag} />
+    <div class="m-4">
+        <RecipeGrid recipes={recipes} />
+    </div>
+</Layout>

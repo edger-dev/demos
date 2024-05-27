@@ -1,15 +1,9 @@
-import { atom, map } from "nanostores";
-
 import { objectify, sleep } from "radash";
 
 import { surrealdbWasmEngines } from "surrealdb.wasm";
 import {
     Surreal,
     ScopeAuth,
-    UUID,
-    decodeCbor,
-    VersionRetrievalFailure,
-    UnsupportedVersion,
     type QueryResult,
     type PreparedQuery,
 } from "surrealdb.js";
@@ -17,12 +11,11 @@ import {
 import {
     type AuthDetails,
     type ConnectionOptions,
-    type Protocol,
     type QueryResponse,
 } from "./types";
 
 import * as states from "./states";
-import { connectionUri } from "./helpers";
+import { connectionUri } from "./helper";
 
 const SURREAL = new Surreal({
     engines: surrealdbWasmEngines() as any,
@@ -48,7 +41,6 @@ export async function disconnect() {
 
 export async function connect(init?: string) {
     const startTime = new Date();
-
     const options = states.connectionOptions.get();
     if (options == null) {
         console.error("[surreal] connection options is null");
@@ -124,7 +116,7 @@ export async function connect(init?: string) {
             if (init) {
                 const result = await executeBatch(init);
                 console.log(
-                    "[surreal] init",
+                    "[surreal] init, took",
                     new Date().getTime() - connectedTime.getTime(),
                     "ms",
                     "[" + init.length + "]",
@@ -270,7 +262,7 @@ export async function authenticate(
     }
 }
 
-export async function executeQuery<T extends unknown[]>(
+export async function executeQuery(
     query: string | PreparedQuery,
     bindings?: Record<string, unknown>
 ): Promise<QueryResponse> {
@@ -298,7 +290,7 @@ export async function executeQuery<T extends unknown[]>(
     }
 }
 
-export async function executeBatch<T extends unknown[]>(
+export async function executeBatch(
     query: string | PreparedQuery,
     bindings?: Record<string, unknown>
 ): Promise<QueryResponse[]> {

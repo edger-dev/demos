@@ -1,6 +1,5 @@
 import { atom, map } from "nanostores";
-import { type ActionResult } from "surrealdb.js";
-import { createConnectionOptions } from "./helpers";
+import { createConnectionOptions } from "./helper";
 
 import {
     type ConnectionOptions,

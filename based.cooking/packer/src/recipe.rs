@@ -15,11 +15,12 @@ use gray_matter::engine::YAML;
 
 #[derive(Debug, Serialize, Deserialize, SurQLDefinition)]
 pub struct Recipe {
+    pub slug: String,
     pub title: String,
     pub author: String,
     pub date: String,
     pub tags: Vec<String>,
-    pub html: String,
+    pub text: String,
 }
 
 fn new_options() -> Options {
@@ -50,6 +51,8 @@ fn get_string_field_value(fields: &HashMap<String, Pod>, key: &str, default: Opt
 
 pub fn parse_recipe(path: &Path) -> Result<Recipe, Whatever> {
     debug!("Parsing content: {:#?}", path.file_name());
+    let slug = path.file_name().ok_or(())
+        .or_else(|x| whatever!("get slug failed: {}", x))?;
     let content = std::fs::read_to_string(path)
         .or_else(|x| whatever!("read file failed: {:#?} -> {}", path, x))?;
     let options = new_options();
@@ -88,6 +91,7 @@ pub fn parse_recipe(path: &Path) -> Result<Recipe, Whatever> {
                 }
             }?;
             Ok(Recipe {
+                slug: slug.into(),
                 title,
                 author,
                 date,

@@ -6,8 +6,8 @@
       "@surreal/*": [
         "surreal/*"
       ],
-      "@app/*": [
-        "app/*"
+      "@components/*": [
+        "src/components/*"
       ],
       "@islands/*": [
         "src/islands/*"
