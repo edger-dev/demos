@@ -51,8 +51,7 @@ const recipes = entries.map((entry) => {
 ---
 
 <Layout title={tag}>
-    <TagHead client:load slug={tag} />
-    <div class="m-4">
-        <RecipeGrid recipes={recipes} />
-    </div>
+    <TagHead client:load data={tag} />
+    <RecipeGrid client:load data={recipes} />
+    <div id="tag-page-end-slot"></div>
 </Layout>

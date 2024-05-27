@@ -9,7 +9,7 @@
         Button,
     } from "flowbite-svelte";
     import { SearchOutline } from 'flowbite-svelte-icons';
-    import { toggle_console_visible, console_ready } from "@islands/states";
+    import { toggle_console_visible, console_ready } from "@islands/console/states";
     import { Spinner } from "flowbite-svelte";
 </script>
 

@@ -2,7 +2,9 @@
 import { getCollection } from "astro:content";
 
 import Layout from "@layouts/Layout.astro";
+import { type Recipe } from "src/types";
 import RecipeHead from "@components/RecipeHead.svelte";
+import RecipeBody from "@components/RecipeBody.svelte";
 
 export async function getStaticPaths() {
     const recipes = await getCollection("recipes");
@@ -14,11 +16,18 @@ export async function getStaticPaths() {
 
 const { entry } = Astro.props;
 const { Content } = await entry.render();
+
+const recipe = {
+    slug: entry.slug,
+    text: entry.body,
+    data: entry.data,
+} as Recipe;
 ---
 
 <Layout title={entry.data.title}>
-    <RecipeHead slug={entry.slug} data={entry.data} />
-    <article class="mx-auto prose prose-lg lg:prose-xl dark:prose-invert p-2">
+    <RecipeHead client:load data={recipe}/>
+    <RecipeBody client:load>
         <Content />
-    </article>
+    </RecipeBody>
+    <div id="recipe-page-end-slot"></div>
 </Layout>

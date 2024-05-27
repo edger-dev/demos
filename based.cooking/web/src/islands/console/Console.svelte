@@ -1,6 +1,5 @@
 <script lang="ts">
-    import { console_visible } from "@islands/states";
-    import { console_ready } from "@islands/states";
+    import { console_visible, console_ready } from "@islands/console/states";
     import Loading from "@components/Loading.svelte";
     import Toolbar from "./Toolbar.svelte";
     import { init } from "@islands/console/states";

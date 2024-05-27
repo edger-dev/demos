@@ -1,16 +1,20 @@
 <script lang="ts">
     import Loading from "@components/Loading.svelte";
-    import RecipeGrid from "@components/RecipeGrid.svelte";
-    import { recipes } from "@islands/states";
-    import { response } from "@islands/console/states";
+    import Recipe from "./Recipe.svelte";
+    import { all_recipes } from "@islands/console/states";
+    import { init_response } from "@islands/console/states";
 </script>
 
 <div class="bg-base-200 place-content-begin">
-    {#if $recipes}
-        <RecipeGrid recipes={$recipes} />
-    {:else if $response == null}
+    {#if $all_recipes}
+        <div class="flex flex-col">
+            {#each $all_recipes as recipe (recipe.slug)}
+                <Recipe data={recipe} />
+            {/each}
+        </div>
+    {:else if $init_response == null}
         <Loading />
-    {:else if !$response?.success}
-        failed to load: {$response?.result.toString()}
+    {:else if !$init_response?.success}
+        failed to load: {$init_response?.result.toString()}
     {/if}
 </div>
