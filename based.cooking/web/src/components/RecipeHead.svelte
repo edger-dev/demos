@@ -15,7 +15,7 @@
 {#if tags.length > 0}
     <div class="flex flex-row gap-2 flex-wrap-reverse place-content-center mt-8">
         {#each tags as tag}
-            <Badge href="/tags/{tag}" large>{tag}</Badge>
+            <Badge href="/tags/{tag}/" large>{tag}</Badge>
         {/each}
     </div>
 {/if}

@@ -10,14 +10,14 @@
 </script>
 
 <Card on:click={hideSearch} class="flex flex-col place-content-between gap-2">
-    <Button outline href="/recipes/{slug}">
+    <Button outline href="/recipes/{slug}/">
         <Heading tag="h5" style={view_transition_recipe(slug)}>
             {data.title}
         </Heading>
     </Button>
     <div class="flex flex-row gap-2 self-begin flex-wrap-reverse">
         {#each tags as tag}
-            <Badge href="/tags/{tag}" style={view_transition_recipe_tag(slug, tag)}>{tag}</Badge>
+            <Badge href="/tags/{tag}/" style={view_transition_recipe_tag(slug, tag)}>{tag}</Badge>
         {/each}
     </div>
 </Card>
