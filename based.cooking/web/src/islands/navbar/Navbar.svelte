@@ -8,8 +8,8 @@
         NavLi,
         Button,
     } from "flowbite-svelte";
-    import { SearchOutline } from 'flowbite-svelte-icons';
-    import { toggle_console_visible, console_ready } from "@islands/console/states";
+    import { SearchOutline, RocketOutline } from 'flowbite-svelte-icons';
+    import { toggle_console_visible, console_ready, console_enabled } from "@islands/console/states";
     import { Spinner } from "flowbite-svelte";
     import { atom } from "nanostores";
     import { onMount } from "svelte";
@@ -25,8 +25,10 @@
     <Button outline size="sm" on:click={toggle_console_visible}>
         {#if $console_ready}
             <SearchOutline class="w-5 h-5" />
-        {:else}
+        {:else if $console_enabled}
             <Spinner size=5/>
+        {:else}
+            <RocketOutline class="w-5 h-5" />
         {/if}
     </Button>
     {#if $console_ready}

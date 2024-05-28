@@ -3,6 +3,8 @@ import { atom, map } from "nanostores";
 import { sleep } from "radash";
 import { type Recipe } from "@islands/states";
 
+export const console_enabled = atom(false);
+
 export const console_visible = atom(false);
 
 export const console_ready = atom(false);
@@ -41,6 +43,9 @@ export const add_recipe_to_tags = function (tag: string, recipe: Recipe) {
 }
 
 export const toggle_console_visible = function () {
+    if (!console_enabled.get()) {
+        console_enabled.set(true);
+    }
     if (console_ready.get()) {
         console_visible.set(!console_visible.get());
         console.log("toggle_console_visible() ->", console_visible.get());
