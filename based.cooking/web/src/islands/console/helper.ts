@@ -1,5 +1,5 @@
 import { micromark } from "micromark";
-import { type Recipe, recipe, recipe_html, tag, recipes } from "@islands/states";
+import { type Recipe, recipe, recipe_html, tag } from "@islands/states";
 import { all_tag_slugs, get_tag_recipes, hide_console, home_visible, lastest_recipes } from "@islands/console/states";
 import RecipeHead from "@components/RecipeHead.svelte";
 import RecipeBody from "@components/RecipeBody.svelte";
@@ -44,8 +44,8 @@ export const hijack_recipe = function(data: Recipe) {
 }
 
 export const hijack_tag = function(data: string) {
-    recipes.set(get_tag_recipes(data));
-    console.log("hajack_recipe", data, recipes.get());
+    const recipes = get_tag_recipes(data);
+    console.log("hajack_recipe", data, recipes);
     tag.set(data);
     if (!document.getElementById("tag-page-end-slot")) {
         const main = document.getElementById("main-slot");
@@ -60,7 +60,7 @@ export const hijack_tag = function(data: string) {
             new RecipeGrid({
                 target: main,
                 props:{
-                    data: null
+                    data: get_tag_recipes(data)
                 }
             })
         }
