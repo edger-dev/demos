@@ -11,27 +11,47 @@
     import { SearchOutline } from 'flowbite-svelte-icons';
     import { toggle_console_visible, console_ready } from "@islands/console/states";
     import { Spinner } from "flowbite-svelte";
+    import { atom } from "nanostores";
+    import { onMount } from "svelte";
+    import { hijack_home } from "@islands/console/helper";
+
+    const mounted = atom(false);
+    onMount(() => {
+        mounted.set(true);
+    })
 </script>
 
 <Navbar class="sticky top-0 z-20">
     <Button outline size="sm" on:click={toggle_console_visible}>
-        {#if !$console_ready}
-            <Spinner size=5/>
-        {:else}
+        {#if $console_ready}
             <SearchOutline class="w-5 h-5" />
+        {:else}
+            <Spinner size=5/>
         {/if}
     </Button>
-    <NavBrand href="/">
-        <span
-            class="self-center whitespace-nowrap text-xl font-semibold dark:text-white pl-4"
-        >
-            🍲 Based Cooking
-        </span>
-    </NavBrand>
+    {#if $console_ready}
+        <Button on:click={hijack_home} color="alternative">
+            <span
+                class="self-center whitespace-nowrap text-xl font-semibold dark:text-white pl-4"
+            >
+                🍲 Based Cooking
+            </span>
+        </Button>
+    {:else}
+        <NavBrand href="/">
+            <span
+                class="self-center whitespace-nowrap text-xl font-semibold dark:text-white pl-4"
+            >
+                🍲 Based Cooking
+            </span>
+        </NavBrand>
+    {/if}
     <div class="flex md:order-2">
-        <DarkMode
-            class="mx-2 inline-block dark:hover:text-white hover:text-gray-900"
-        />
+        {#if $mounted}
+            <DarkMode
+                class="mx-2 inline-block dark:hover:text-white hover:text-gray-900"
+            />
+        {/if}
         <NavHamburger />
     </div>
     <NavUl>

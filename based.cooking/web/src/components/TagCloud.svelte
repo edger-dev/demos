@@ -3,17 +3,14 @@
     import { view_transition_recipe, recipe, type Recipe } from "@islands/states";
     import TagBadge from "./TagBadge.svelte";
 
-    export let data: null | Recipe;
-    if (data) {
-        recipe.set(data);
+    export let data: null | string[];
+    if (!data) {
+        data = [];
     }
 </script>
 
-<Heading tag="h1" class="container mx-auto text-center mt-2 mb-4" style={view_transition_recipe($recipe.slug)}>
-    {$recipe.data.title}
-</Heading>
 <div class="flex flex-row gap-2 flex-wrap-reverse place-content-center mt-8">
-    {#each $recipe.data?.tags as tag}
+    {#each data as tag}
         <TagBadge data={tag} />
     {/each}
 </div>

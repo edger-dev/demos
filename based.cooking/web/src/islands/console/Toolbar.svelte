@@ -12,6 +12,9 @@
             ><TagOutline class="w-6 h-6" /></ToolbarButton
         >
     </ToolbarGroup>
+    <ToolbarGroup>
+        Searching and multi tags filtering not implemented
+    </ToolbarGroup>
     <ToolbarGroup slot="end">
         <div class="hidden relative md:block">
             <div

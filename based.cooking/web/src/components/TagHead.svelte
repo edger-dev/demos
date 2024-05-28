@@ -11,7 +11,7 @@
 </script>
 
 
-<div class="text-center mt-2 mb-4 ml-8">
+<div class="border rounded-lg p-4 text-center mt-2 mb-4 mx-2">
     <Badge on:click={hide_console} class="text-3xl px-6 pb-2" style={view_transition_tag($tag ?? "")}>
     {$tag}
     </Badge>
