@@ -26,6 +26,9 @@ const { title } = Astro.props;
     <body class="bg-white dark:bg-gray-900">
         <Navbar client:load transition:persist="navbar" transition:persist-props />
         <ConsoleLoader client:only="svelte" transition:persist="console" transition:persist-props />
+        <div id="home-slot">
+            <slot name="home" />
+        </div>
         <div id="main-slot">
             <slot/>
         </div>

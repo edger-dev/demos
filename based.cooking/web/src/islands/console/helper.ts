@@ -1,11 +1,12 @@
 import { micromark } from "micromark";
 import { type Recipe, recipe, recipe_html, tag, recipes } from "@islands/states";
-import { all_tag_slugs, get_tag_recipes, hide_console, lastest_recipes } from "@islands/console/states";
+import { all_tag_slugs, get_tag_recipes, hide_console, home_visible, lastest_recipes } from "@islands/console/states";
 import RecipeHead from "@components/RecipeHead.svelte";
 import RecipeBody from "@components/RecipeBody.svelte";
 import TagHead from "@components/TagHead.svelte";
 import RecipeGrid from "@components/RecipeGrid.svelte";
 import Home from "@components/Home.svelte";
+import { atom } from "nanostores";
 
 export const hijack_history = function(url: string, title: string) {
     console.log("hijack_history", url, title);
@@ -38,6 +39,7 @@ export const hijack_recipe = function(data: Recipe) {
         }
     }
     hijack_history(`/recipes/${data.slug}`, data.data.title);
+    home_visible.set(false);
     hide_console();
 }
 
@@ -64,19 +66,27 @@ export const hijack_tag = function(data: string) {
         }
     }
     hijack_history(`/tags/${data}`, data);
+    home_visible.set(false);
     hide_console();
 }
 
+const home_html = atom<null | string>(null);
+
 export const hijack_home = function() {
-    let latest = []
-    console.log("hijack_home", all_tag_slugs.get(), lastest_recipes.get());
+    const home_content = document.getElementById("home-content");
+    console.log("hijack_home", home_content, all_tag_slugs.get(), lastest_recipes.get());
     tag.set(null);
-    if (!document.getElementById("home-page-end-slot")) {
-        const main = document.getElementById("main-slot");
-        if (main) {
-            main.innerHTML = "";
+    const main = document.getElementById("main-slot");
+    if (main) {
+        main.innerHTML = "";
+    }
+    if (home_content) {
+        home_visible.set(true);
+    } else if (!document.getElementById("home-page-end-slot")) {
+        const home = document.getElementById("home-slot");
+        if (home) {
             new Home({
-                target: main,
+                target: home,
                 props:{
                     data: {
                         tags: all_tag_slugs.get(),

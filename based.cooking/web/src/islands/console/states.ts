@@ -4,10 +4,10 @@ import { sleep } from "radash";
 import { type Recipe } from "@islands/states";
 
 export const console_enabled = atom(false);
-
 export const console_visible = atom(false);
-
 export const console_ready = atom(false);
+
+export const home_visible = atom(true);
 
 export const last_response = atom<null | db.QueryResponse>(null);
 
