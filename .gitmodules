@@ -1,3 +1,3 @@
 [submodule "based.cooking/data"]
     path = based.cooking/data
-    url = git@github.com:LukeSmithxyz/based.cooking
+    url = git@github.com:edger-dev/based.cooking
