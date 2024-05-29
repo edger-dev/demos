@@ -3,7 +3,7 @@
     import { type Recipe } from "@islands/types";
     import { view_transition_recipe } from "@islands/states";
     import { hijack_recipe, hijack_tag } from "./helper";
-    import TagCloud from "./TagCloud.svelte";
+    import TagCloud from "@components/TagCloud.svelte";
 
     export let data: Recipe;
 </script>
