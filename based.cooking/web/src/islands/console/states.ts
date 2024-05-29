@@ -6,7 +6,7 @@ export const console_enabled = atom(false);
 export const console_visible = atom(false);
 export const console_ready = atom(false);
 
-export const home_visible = atom<null | boolean>(null);
+export const home_visible = atom<boolean>(false);
 
 export const inited = atom(false);
 
@@ -17,18 +17,6 @@ export const all_recipes = map<{ [slug: string]: Recipe }>({});
 export const lastest_recipes = atom<Recipe[]>([]);
 
 export const filtered_recipes = atom<Recipe[]>([]);
-
-export const hide_home = function () {
-    if (home_visible.get() != null) {
-        home_visible.set(false);
-    }
-}
-
-export const show_home = function () {
-    if (home_visible.get() != null) {
-        home_visible.set(true);
-    }
-}
 
 export const toggle_console_visible = function () {
     if (!console_enabled.get()) {

@@ -5,7 +5,7 @@
     export let data: TagStub[];
 </script>
 
-<div class="flex flex-row gap-2 flex-wrap place-content-center mt-8">
+<div class="flex flex-row gap-2 flex-wrap place-content-center mt-2">
     {#each data as tag}
         <TagBadge data={tag} />
     {/each}

@@ -1,14 +1,14 @@
 <script lang="ts">
-    import { Button, Card, Badge, Heading } from "flowbite-svelte";
+    import { Button, Card, Heading } from "flowbite-svelte";
     import { type Recipe, view_transition_recipe } from "@islands/states";
     import { console_ready } from "@islands/console/states";
     import { hijack_recipe } from "@islands/console/helper";
-    import TagBadge from "./TagBadge.svelte";
+    import TagCloud from "./TagCloud.svelte";
 
     export let data: Recipe;
 </script>
 
-<Card class="flex flex-col place-content-between gap-2">
+<Card class="flex flex-col place-content-between gap-2 max-w-full">
     {#if $console_ready}
         <Button outline on:click={() => hijack_recipe(data)} >
             <Heading tag="h5" style={view_transition_recipe(data.slug)}>
@@ -22,9 +22,5 @@
             </Heading>
         </Button>
     {/if}
-    <div class="flex flex-row gap-2 self-begin flex-wrap-reverse">
-        {#each data.tags ?? [] as tag}
-            <TagBadge data={tag} />
-        {/each}
-    </div>
+    <TagCloud data={data.tags} />
 </Card>

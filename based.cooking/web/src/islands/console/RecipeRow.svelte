@@ -3,7 +3,7 @@
     import { type Recipe } from "@islands/types";
     import { view_transition_recipe } from "@islands/states";
     import { hijack_recipe, hijack_tag } from "./helper";
-    import TagBadge from "@components/TagBadge.svelte";
+    import TagCloud from "./TagCloud.svelte";
 
     export let data: Recipe;
 </script>
@@ -14,9 +14,5 @@
             {data.title}
         </Heading>
     </Button>
-    <div class="w-1/2 flex flex-row gap-1 self-end flex-wrap-reverse">
-        {#each data.tags as tag}
-            <TagBadge data={tag} />
-        {/each}
-    </div>
+    <TagCloud data={data.tags} />
 </div>

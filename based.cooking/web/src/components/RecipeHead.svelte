@@ -3,21 +3,17 @@
     import { atom } from "nanostores";
     import { view_transition_recipe, page_slug } from "@islands/states";
     import { type Recipe } from "@islands/types";
-    import TagBadge from "./TagBadge.svelte";
+    import TagCloud from "./TagCloud.svelte";
 
     export let data: Recipe;
     page_slug.set(data.slug);
 
-    console.log("[recipe] inited", data);
+    console.log("[recipe] inited", data.slug, data.tags.length);
 
     const recipe = atom(data);
 </script>
 
-<Heading tag="h1" class="container mx-auto text-center mt-2 mb-4" style={view_transition_recipe($recipe.slug)}>
+<Heading tag="h1" class="text-center mt-2 mb-8" style={view_transition_recipe($recipe.slug)}>
     {$recipe.title}
 </Heading>
-<div class="flex flex-row gap-2 flex-wrap-reverse place-content-center mt-8">
-    {#each $recipe.tags as tag}
-        <TagBadge data={tag} />
-    {/each}
-</div>
+<TagCloud data={data.tags} />
