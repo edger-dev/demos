@@ -88,3 +88,20 @@ export const query_recipe_slugs = async function (query: string): Promise<string
     }
 }
 
+export const execute_remote_queries = async function(url: string): Promise<QueryResponse[]> {
+    const startTime = new Date();
+    const response = await fetch(url);
+    const query = await response.text();
+    console.log("[db] fetch `" + url + "` took", new Date().getTime() - startTime.getTime(), "ms -> ", "[" + query.length + "]");
+    const startExecuteTime = new Date();
+    const result = await client.executeBatch(query);
+    console.log(
+        "[db] execute_remote_queries `" + url + "` took",
+        new Date().getTime() - startExecuteTime.getTime(),
+        "ms",
+        "[" + init.length + "]",
+        result.length,
+        result
+    );
+    return result;
+}

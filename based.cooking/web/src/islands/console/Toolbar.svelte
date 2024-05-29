@@ -4,25 +4,28 @@
         TagOutline,
         SearchOutline,
     } from "flowbite-svelte-icons";
+    import { search_title } from "./states";
+
+    let search_value: string = "";
+    async function onSearchKeyUp(event: KeyboardEvent) {
+        await search_title(search_value.toLowerCase());
+    }
 </script>
 
 <Toolbar class="sticky top-0 z-10 border border-orange-500 rounded-none mb-2">
-    <ToolbarGroup>
-        <ToolbarButton class="text-orange-500"
-            ><TagOutline class="w-6 h-6" /></ToolbarButton
-        >
-    </ToolbarGroup>
-    <ToolbarGroup>
-        Searching and multi tags filtering not implemented
-    </ToolbarGroup>
     <ToolbarGroup slot="end">
-        <div class="hidden relative md:block">
+        <div class="relative text-end">
+            in tags, or title and author in recipes.
+        </div>
+    </ToolbarGroup>
+    <ToolbarGroup>
+        <div class="relative">
             <div
                 class="flex absolute inset-y-0 start-0 items-center ps-3 pointer-events-none"
             >
                 <SearchOutline class="w-4 h-4" />
             </div>
-            <Input id="console-search" class="ps-10" placeholder="Search..." />
+            <Input id="console-search" on:keyup={onSearchKeyUp} class="ps-10" placeholder="Type to Search..." bind:value={search_value} />
         </div>
     </ToolbarGroup>
 </Toolbar>

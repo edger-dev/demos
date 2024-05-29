@@ -3,7 +3,7 @@
     import Loading from "@components/Loading.svelte";
     import { init } from "@islands/console/states";
 
-    const visibleClass = "fixed z-10 top-[72px] left-4 right-4 bottom-4 p-2 backdrop-blur-sm bg-orange-500/90 rounded-lg overflow-y-scroll";
+    const visibleClass = "fixed z-10 top-[72px] left-4 right-4 bottom-4 p-2 overflow-y-auto";
     const hiddenClass = visibleClass + " hidden";
 
     const maskClass = "fixed z-20 top-0 bottom-0 left-0 right-0 bg-gray-500/30 backgrop-blur-sm place-content-center";

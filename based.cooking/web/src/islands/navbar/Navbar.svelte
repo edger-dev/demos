@@ -27,9 +27,9 @@
         {/if}
     </Button>
     {#if $console_ready}
-        <Button on:click={hijack_home} color="alternative">
+        <Button on:click={hijack_home} color="alternative" class="mx-0 px-1">
             <span
-                class="self-center whitespace-nowrap text-xl font-semibold dark:text-white pl-4"
+                class="self-center whitespace-nowrap text-xl font-semibold dark:text-white"
             >
                 🍲 Based Cooking
             </span>
@@ -37,7 +37,7 @@
     {:else}
         <NavBrand href="/">
             <span
-                class="self-center whitespace-nowrap text-xl font-semibold dark:text-white pl-4"
+                class="self-center whitespace-nowrap text-xl font-semibold dark:text-white"
             >
                 🍲 Based Cooking
             </span>

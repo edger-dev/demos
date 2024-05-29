@@ -1,7 +1,7 @@
 import { micromark } from "micromark";
 import { type Recipe, type TagStub, isHome } from "@islands/types";
 import { page_slug } from "@islands/states";
-import { all_tag_stubs, all_tags, hide_console, home_visible, lastest_recipes } from "@islands/console/states";
+import { all_tag_stubs, all_tags_dict, hide_console, home_visible, all_recipes } from "@islands/console/states";
 import RecipeHead from "@components/RecipeHead.svelte";
 import RecipeBody from "@components/RecipeBody.svelte";
 import TagHead from "@components/TagHead.svelte";
@@ -50,7 +50,7 @@ export const hijack_recipe = function(data: Recipe) {
 }
 
 export const hijack_tag = function(data: TagStub) {
-    const tag = all_tags.get()[data.slug];
+    const tag = all_tags_dict.get()[data.slug];
     console.log("[console] hijack_tag", data, tag);
     const main = document.getElementById("main-slot");
     if (main) {
@@ -73,14 +73,14 @@ export const hijack_tag = function(data: TagStub) {
 
 export const hijack_home = function() {
     const home_panel = document.getElementById("home-panel");
-    console.log("[console] hijack_home", home_visible.get(), home_panel, all_tag_stubs.get().length, lastest_recipes.get().length);
+    console.log("[console] hijack_home", home_visible.get(), home_panel, all_tag_stubs.get().length, all_recipes.get().length);
     const main = document.getElementById("main-slot");
     if (main) {
         main.innerHTML = "";
     }
     let home_data = {
         all_tags: all_tag_stubs.get(),
-        latest_recipes: lastest_recipes.get(),
+        latest_recipes: all_recipes.get().slice(0, 32),
     }
     if (home_panel == null) {
         const home_slot = document.getElementById("home-slot");
