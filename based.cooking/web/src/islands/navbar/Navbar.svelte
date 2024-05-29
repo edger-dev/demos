@@ -27,7 +27,7 @@
         {/if}
     </Button>
     {#if $console_ready}
-        <Button on:click={hijack_home} color="alternative" class="mx-0 px-1">
+        <Button on:click={hijack_home} color="alternative" class="mx-0 px-1 md:px-4">
             <span
                 class="self-center whitespace-nowrap text-xl font-semibold dark:text-white"
             >

@@ -153,7 +153,6 @@ export const search_title = async function (text: string) {
     const tags = fuzzysort.go(text, all_tag_stubs.get(), {
             key: "slug",
             threshold: 0.5,
-            limit: 10,
         })
         .map(match => {
             return match.obj as TagStub;
@@ -163,7 +162,7 @@ export const search_title = async function (text: string) {
     const recipes = fuzzysort.go(text, all_recipes.get(), {
             keys: ["title", "author"],
             threshold: 0.5,
-            limit: 32,
+            limit: 64,
         }).map(match => {
             return match.obj as Recipe;
         })
