@@ -1,56 +1,33 @@
 ---
-import { getCollection } from "astro:content";
 import RecipeGrid from "@components/RecipeGrid.svelte";
 
-import { type Recipe, type RecipeEntry } from "src/types";
+import { type Tag } from "@islands/types";
+import { convert_recipe, get_all_recipes} from "src/content/helper";
 
 import Layout from "@layouts/Layout.astro";
 import TagHead from "@components/TagHead.svelte";
 
 export async function getStaticPaths() {
-    let all: string[] = [];
-    let tags = new Map<string, RecipeEntry[]>();
-    const recipes = await getCollection("recipes");
-    recipes.forEach((entry) => {
-        entry.data.tags?.forEach((tag) => {
-            const exist = tags.get(tag);
-            if (exist) {
-                exist.push(entry);
-            } else {
-                tags.set(tag, [entry]);
-                all.push(tag);
-            }
-        });
-    });
-    return Array.from(tags.entries()).map((entry) => ({
+    const [_all_recipes, tag_recipes] = await get_all_recipes();
+    return Array.from(tag_recipes.entries()).map((entry) => ({
         params: { slug: entry[0] },
         props: {
-            tag: entry[0],
-            all: all,
-            entries: entry[1],
+            tag: {
+                slug: entry[0],
+                recipes: entry[1].map((entry) => convert_recipe(entry, tag_recipes)),
+            } as Tag,
         },
     }));
 }
 
 interface Props {
-    tag: string;
-    all: string[];
-    entries: RecipeEntry[];
+    tag: Tag;
 }
 
-const { tag, all, entries } = Astro.props;
-
-const recipes = entries.map((entry) => {
-    return {
-        slug: entry.slug,
-        text: entry.body,
-        data: entry.data,
-    } as Recipe;
-});
+const { tag } = Astro.props;
 ---
 
-<Layout title={tag}>
+<Layout title={tag.slug}>
     <TagHead client:load data={tag} />
-    <RecipeGrid client:load data={recipes} />
-    <div id="tag-page-end-slot"></div>
+    <RecipeGrid client:load data={tag.recipes ?? []} />
 </Layout>

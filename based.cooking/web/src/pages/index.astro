@@ -1,32 +1,34 @@
 ---
-import { getCollection } from "astro:content";
 import Layout from "@layouts/Layout.astro";
-import Home from "@components/Home.svelte";
+import HomePanel from "@components/HomePanel.svelte";
+import { convert_recipe, get_all_recipes} from "src/content/helper";
+import { type TagStub } from "@islands/types";
 
-let tags: string[] = [];
+const [all_recipes, tag_recipes] = await get_all_recipes();
 
-const recipes = await getCollection("recipes");
-recipes
+const latest_recipes = all_recipes
     .sort((x, y) => {
         const x_date= x.data.date ?? new Date(0);
         const y_date= y.data.date ?? new Date(0);
         return x_date > y_date ? -1 : 1;
-    }).forEach((entry) => {
-        entry.data.tags?.forEach((tag) => {
-            if (tags.indexOf(tag) < 0) {
-                tags.push(tag);
-            }
-        });
-    });
+    })
+    .slice(0, 32)
+    .map(entry => convert_recipe(entry, tag_recipes));
+
+const all_tags = Array.from(tag_recipes.entries())
+    .map(entry => ({
+        slug: entry[0],
+        recipes_count: entry[1].length,
+    } as TagStub));
+all_tags.sort((a, b) => b.recipes_count - a.recipes_count);
 
 const data = {
-    tags: tags,
-    recipes: recipes.slice(0, 32),
+    all_tags: all_tags,
+    latest_recipes: latest_recipes,
 }
-
 ---
 
 <Layout title="Based Cooking">
-    <Home slot="home" client:load data={data} />
+    <HomePanel client:load slot="home" data={data} />
 </Layout>
 

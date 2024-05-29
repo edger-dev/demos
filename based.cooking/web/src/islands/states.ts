@@ -1,20 +1,7 @@
-import { atom, map } from "nanostores";
+import { atom } from "nanostores";
+import { type Recipe, type Tag, type PageData, isRecipe, isHome, isTag } from "@islands/types";
 
-export { type Recipe, type RecipeData } from "src/types";
-
-
-export const recipe = atom<null | Recipe>(null);
-export const recipe_html = atom<null | string>(null);
-export const tags = map<{ [slug: string]: Recipe[] }>({});
-
-export const tag = atom<null | string>(null);
-
-export const reset = function () {
-    tags.set({});
-    recipe.set(null);
-    recipe_html.set(null);
-    tag.set(null);
-}
+export const page_slug = atom("");
 
 export const view_transition_tag = function(slug: string) {
     return `view-transition-name: t_${slug}`;

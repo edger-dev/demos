@@ -1,11 +1,11 @@
 <script lang="ts">
-    import { recipe_html } from "@islands/states";
+    export let data: string;
 </script>
 
 <article class="mx-auto prose prose-lg lg:prose-xl dark:prose-invert">
-    {#if $recipe_html}
+    {#if data.length > 0}
         <div class="w-full">
-            {@html $recipe_html}
+            {@html data}
         </div>
     {:else}
         <slot />

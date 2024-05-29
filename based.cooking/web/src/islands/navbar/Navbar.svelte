@@ -14,11 +14,6 @@
     import { atom } from "nanostores";
     import { onMount } from "svelte";
     import { hijack_home } from "@islands/console/helper";
-
-    const mounted = atom(false);
-    onMount(() => {
-        mounted.set(true);
-    })
 </script>
 
 <Navbar class="sticky top-0 z-20">
@@ -49,11 +44,9 @@
         </NavBrand>
     {/if}
     <div class="flex md:order-2">
-        {#if $mounted}
-            <DarkMode
-                class="mx-2 inline-block dark:hover:text-white hover:text-gray-900"
-            />
-        {/if}
+        <DarkMode
+            class="mx-2 inline-block dark:hover:text-white hover:text-gray-900"
+        />
         <NavHamburger />
     </div>
     <NavUl>

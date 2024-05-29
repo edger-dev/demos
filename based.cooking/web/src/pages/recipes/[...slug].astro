@@ -1,33 +1,33 @@
 ---
-import { getCollection } from "astro:content";
-
 import Layout from "@layouts/Layout.astro";
-import { type Recipe } from "src/types";
+import { type Recipe } from "@islands/types";
 import RecipeHead from "@components/RecipeHead.svelte";
 import RecipeBody from "@components/RecipeBody.svelte";
+import { type RecipeEntry, convert_recipe, get_all_recipes} from "src/content/helper";
 
 export async function getStaticPaths() {
-    const recipes = await getCollection("recipes");
-    return recipes.map((entry) => ({
+    const [all_recipes, tag_recipes] = await get_all_recipes();
+    return all_recipes.map(entry => ({
         params: { slug: entry.slug },
-        props: { entry },
+        props: {
+            recipe: convert_recipe(entry, tag_recipes),
+            entry: entry,
+        }
     }));
 }
 
-const { entry } = Astro.props;
-const { Content } = await entry.render();
+interface Props {
+    recipe: Recipe;
+    entry: RecipeEntry;
+}
 
-const recipe = {
-    slug: entry.slug,
-    text: entry.body,
-    data: entry.data,
-} as Recipe;
+const { recipe, entry } = Astro.props;
+const { Content } = await entry.render();
 ---
 
-<Layout title={entry.data.title}>
+<Layout title={recipe.title}>
     <RecipeHead client:load data={recipe}/>
-    <RecipeBody client:load>
+    <RecipeBody client:load data="">
         <Content />
     </RecipeBody>
-    <div id="recipe-page-end-slot"></div>
 </Layout>

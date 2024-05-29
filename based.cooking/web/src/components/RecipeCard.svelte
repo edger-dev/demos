@@ -6,27 +6,24 @@
     import TagBadge from "./TagBadge.svelte";
 
     export let data: Recipe;
-
-    const tags = data.data.tags?? [];
-
 </script>
 
 <Card class="flex flex-col place-content-between gap-2">
     {#if $console_ready}
         <Button outline on:click={() => hijack_recipe(data)} >
             <Heading tag="h5" style={view_transition_recipe(data.slug)}>
-                {data.data.title}
+                {data.title}
             </Heading>
         </Button>
     {:else}
         <Button outline href="/recipes/{data.slug}/">
             <Heading tag="h5" style={view_transition_recipe(data.slug)}>
-                {data.data.title}
+                {data.title}
             </Heading>
         </Button>
     {/if}
     <div class="flex flex-row gap-2 self-begin flex-wrap-reverse">
-        {#each tags as tag}
+        {#each data.tags ?? [] as tag}
             <TagBadge data={tag} />
         {/each}
     </div>

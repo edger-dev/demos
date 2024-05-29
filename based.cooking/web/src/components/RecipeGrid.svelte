@@ -1,6 +1,6 @@
 <script lang="ts">
     import RecipeCard from "@components/RecipeCard.svelte";
-    import { type Recipe } from "@islands/states";
+    import { type Recipe } from "@islands/types";
 
     export let data: Recipe[];
 
