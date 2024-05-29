@@ -10,7 +10,6 @@
     const baseCountClass = "inline-flex items-center rounded-full p-0.5 my-0.5 ms-1.5 -me-1.5 text-xs w-4 h-4 place-content-center text-center";
     const hoverClass = "hover:bg-primary-900 hover:text-white dark:hover:bg-red-900 dark:hover:text-yellow-300";
     const countClass = baseCountClass + hoverClass + " bg-primary-500 dark:bg-primary-400 text-white dark:text-primary-800";
-    const currentCountClass = baseCountClass + " bg-gray-500 dark:text-black text-white dark:text-black";
 </script>
 
 {#if $page_slug == data.slug}
