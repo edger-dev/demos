@@ -52,6 +52,6 @@
     <NavUl>
         <NavLi href="https://github.com/edger-dev/demos/tree/main/based.cooking" target="_blank">GitHub</NavLi>
         <NavLi href="https://edger.substack.com/" target="_blank">Blog</NavLi>
-        <NavLi href="/about.html">About</NavLi>
+        <NavLi href="/about/">About</NavLi>
     </NavUl>
 </Navbar>
