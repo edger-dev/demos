@@ -7,11 +7,6 @@ import { type TagStub } from "@islands/types";
 const [all_recipes, tag_recipes] = await get_all_recipes();
 
 const latest_recipes = all_recipes
-    .sort((x, y) => {
-        const x_date= x.data.date ?? new Date(0);
-        const y_date= y.data.date ?? new Date(0);
-        return x_date > y_date ? -1 : 1;
-    })
     .slice(0, 32)
     .map(entry => convert_recipe(entry, tag_recipes));
 

@@ -25,6 +25,11 @@ export const get_all_recipes = async function()
         : Promise<[RecipeEntry[], Map<string, RecipeEntry[]>]> {
     let tag_recipes = new Map<string, RecipeEntry[]>();
     const recipes = await getCollection("recipes");
+    recipes.sort((x, y) => {
+        const x_date= x.data.date ?? new Date(0);
+        const y_date= y.data.date ?? new Date(0);
+        return x_date > y_date ? -1 : 1;
+    })
     recipes.forEach((entry) => {
         entry.data.tags?.forEach((tag) => {
             const exist = tag_recipes.get(tag);
