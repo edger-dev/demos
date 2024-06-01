@@ -5,7 +5,7 @@ show:
 copy-headers:
     cp -v _headers dist/
 
-dev:
+preview:
     just copy-headers
     npx wrangler pages dev dist --ip 0.0.0.0
 
