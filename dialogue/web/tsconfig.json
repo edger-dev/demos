@@ -1,0 +1,23 @@
+{
+  "extends": "astro/tsconfigs/strict",
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@surreal/*": [
+        "surreal/*"
+      ],
+      "@components/*": [
+        "src/components/*"
+      ],
+      "@islands/*": [
+        "src/islands/*"
+      ],
+      "@layouts/*": [
+        "src/layouts/*"
+      ],
+      "@assets/*": [
+        "src/assets/*"
+      ]
+    }
+  }
+}

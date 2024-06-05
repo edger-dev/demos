@@ -1,0 +1,8 @@
+dev:
+    bunx --bun astro dev --host
+
+check:
+    bunx --bun astro check
+
+build:
+    bunx --bun astro build

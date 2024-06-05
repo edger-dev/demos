@@ -1,0 +1,29 @@
+{
+  "name": "",
+  "type": "module",
+  "version": "0.0.1",
+  "dependencies": {
+    "@astrojs/check": "^0.7.0",
+    "@astrojs/svelte": "^5.4.0",
+    "@astrojs/tailwind": "^5.1.0",
+    "@nanostores/router": "^0.15.0",
+    "@tailwindcss/typography": "^0.5.13",
+    "@types/bun": "^1.1.2",
+    "astro": "^4.9.1",
+    "flowbite": "^2.3.0",
+    "flowbite-svelte": "^0.46.1",
+    "flowbite-svelte-icons": "^1.6.1",
+    "libretranslate-ts": "^0.5.11",
+    "micromark": "^4.0.0",
+    "micromark-util-types": "^2.0.0",
+    "nanostores": "^0.9.5",
+    "radash": "^12.1.0",
+    "surrealdb.js": "^1.0.0-beta.8",
+    "surrealdb.wasm": "^1.0.0-beta.11",
+    "surrealql.wasm": "^0.1.7",
+    "svelte": "^4.2.17",
+    "svelte-table": "^0.6.3",
+    "tailwindcss": "^3.4.3",
+    "typescript": "^5.4.5"
+  }
+}

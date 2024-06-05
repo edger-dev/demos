@@ -1,3 +1,6 @@
 [submodule "based.cooking/data"]
     path = based.cooking/data
     url = git@github.com:edger-dev/based.cooking
+[submodule "dialogue/data/japanese-daily-dialogue"]
+	path = dialogue/data/japanese-daily-dialogue
+	url = https://github.com/jqk09a/japanese-daily-dialogue.git
