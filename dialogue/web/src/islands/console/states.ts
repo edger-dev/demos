@@ -1,8 +1,10 @@
-import { type Sentence } from "@islands/types";
+import { type Sentence, type Topic } from "@islands/types";
 import * as db from "./db";
 import { atom, map } from "nanostores";
+import { current_topic, current_dialogue_id } from "@islands/router";
+import { sleep } from "radash";
 
-export const console_enabled = atom(false);
+export const console_enabled = atom(true);
 export const console_visible = atom(false);
 export const console_ready = atom(false);
 
@@ -37,9 +39,6 @@ export const hide_console = function () {
 export const init = async function () {
     if (!inited.get()) {
         await db.init();
-
-        let latest = await db.query_sentences("select * from sentence limit 100;");
-        sentences.set(latest);
 
         inited.set(true);
     }
@@ -78,3 +77,47 @@ export const translate_jp_to_en = async function(text: string): Promise<null | s
     }
     return null;
 }
+
+const loadingTopicIds: number[] = [];
+const loadedTopicIds: number[] = [];
+
+const load_topic = async function(topic: Topic) {
+    while (!console_ready.get()) {
+        await sleep(100);
+    }
+    if (loadingTopicIds.indexOf(topic.id) < 0) {
+        loadingTopicIds.push(topic.id);
+        console_ready.set(false);
+        await db.execute_remote_queries(`/queries/topic${topic.id}.surql`);
+        loadedTopicIds.push(topic.id);
+        console_ready.set(true);
+    } else {
+        while (loadedTopicIds.indexOf(topic.id) < 0) {
+            await sleep(100);
+        }
+    }
+}
+
+const load_dialogue = async function(topic: Topic, id: number) {
+    while (!console_ready.get()) {
+        await sleep(100);
+    }
+    await load_topic(topic);
+    const result = await db.query_sentences(`select * from sentence where id.t = ${topic.id} and id.d = ${id}`);
+    sentences.set(result);
+}
+
+current_topic.subscribe(async topic => {
+    if (topic) {
+        await load_topic(topic);
+    }
+});
+
+current_dialogue_id.subscribe(async dialogue_id => {
+    if (dialogue_id > 0) {
+        const topic = current_topic.get();
+        if (topic) {
+            await load_dialogue(topic, dialogue_id);
+        }
+    }
+});

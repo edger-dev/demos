@@ -10,11 +10,9 @@ use serde_json::json;
 use crate::Dialogue;
 
 pub fn pack(data_path: PathBuf, output_path: PathBuf) {
-    info!("Packing based.cooking data from:\n\t{:?}", data_path);
+    info!("Packing dialogue data from:\n\t{:?}", data_path);
 
-    let mut file = File::create(output_path).expect("open file ok");
-    let mut writer = LineWriter::new(file);
-    let count = import_dialogues(&data_path, &mut writer).unwrap();
+    let count = import_dialogues(&data_path, &output_path).unwrap();
     info!("imported dialogues count: {}", count);
 }
 
@@ -62,11 +60,28 @@ fn generate_dialogue_sentences(dialogue: &Dialogue) -> String {
     format!("INSERT INTO sentence {};\n", serde_json::to_string(&sentences).unwrap())
 }
 
+fn write_queries(output_path: &PathBuf, entry: &DirEntry, dialogues: &Vec<Dialogue>) {
+    let filename = entry.file_name().to_string_lossy().replace(".json", ".surql");
+    let mut path = output_path.clone();
+    path.push(filename);
+    let mut file = File::create(path).expect("open file ok");
+    let mut writer = LineWriter::new(file);
+    /*
+    for chunk in all_dialogues.chunks(1000) {
+        //let line = generate_dialogue_line(&dialogue);
+        let line = generate_dialogue_chunk(chunk);
+        writer.write_all(line.as_bytes());
+    }
+     */
+    for dialogue in dialogues {
+        let line = generate_dialogue_sentences(&dialogue);
+        writer.write_all(line.as_bytes());
+    }
+}
 
-fn import_dialogues(data_path: &PathBuf, writer: &mut LineWriter<File>) -> Result<usize, Whatever> {
+fn import_dialogues(data_path: &PathBuf, output_path: &PathBuf) -> Result<usize, Whatever> {
     let mut content_path = data_path.clone();
     let mut created: usize = 0;
-    let mut all_dialogues: Vec<Dialogue> = vec![];
     for entry in WalkDir::new(content_path)
         .into_iter()
         .filter_entry(|x| check_file_extension(".json", x)) {
@@ -76,7 +91,8 @@ fn import_dialogues(data_path: &PathBuf, writer: &mut LineWriter<File>) -> Resul
                 let dialogues: serde_json::Result<Vec<Dialogue>> = serde_json::from_str(&content);
                 match dialogues {
                     Ok(dialogues) => {
-                        all_dialogues.extend(dialogues);
+                        created += dialogues.len();
+                        write_queries(output_path, &entry, &dialogues);
                     },
                     Err(err) => {
                         error!("parse dialogues failed: {:#?}", err);
@@ -84,17 +100,6 @@ fn import_dialogues(data_path: &PathBuf, writer: &mut LineWriter<File>) -> Resul
                 }
             }
         }
-    }
-    /*
-    for chunk in all_dialogues.chunks(1000) {
-        //let line = generate_dialogue_line(&dialogue);
-        let line = generate_dialogue_chunk(chunk);
-        writer.write_all(line.as_bytes());
-    }
-     */
-    for dialogue in all_dialogues {
-        let line = generate_dialogue_sentences(&dialogue);
-        writer.write_all(line.as_bytes());
     }
     Ok(created)
 }

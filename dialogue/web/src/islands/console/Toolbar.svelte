@@ -13,7 +13,7 @@
 <Toolbar class="sticky top-0 z-10 border border-orange-500 rounded-none mb-2">
     <ToolbarGroup slot="end">
         <div class="relative text-end">
-            in tags, or title and author in dialogues.
+            NOT IMPLEMENTED
         </div>
     </ToolbarGroup>
     <ToolbarGroup>

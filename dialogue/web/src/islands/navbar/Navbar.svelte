@@ -7,11 +7,18 @@
         NavUl,
         NavLi,
         Button,
+        Dropdown,
+        DropdownItem,
     } from "flowbite-svelte";
-    import { SearchOutline, RocketOutline } from 'flowbite-svelte-icons';
+    import { SearchOutline, RocketOutline, ChevronDownOutline } from 'flowbite-svelte-icons';
     import { toggle_console_visible, console_ready, console_enabled } from "@islands/console/states";
     import { Spinner } from "flowbite-svelte";
     import { hijack_home } from "@islands/console/helper";
+    import { atom } from "nanostores";
+    import { topics } from "@islands/types";
+    import { current_topic } from "@islands/router";
+
+    let dropdownOpen = false;
 </script>
 
 <Navbar class="sticky top-0 z-20">
@@ -25,19 +32,18 @@
         {/if}
     </Button>
     {#if $console_ready}
-        <Button on:click={hijack_home} color="alternative" class="mx-0 px-1 md:px-4">
-            <span
-                class="self-center whitespace-nowrap text-xl font-semibold dark:text-white"
-            >
-                Japanese Daily Dialogue
-            </span>
-        </Button>
+        <Button color="alternative">{ $current_topic?.text ?? "Select Topic" }<ChevronDownOutline class="mx-2 w-6 h-6 text-black dark:text-gray-400"/></Button>
+        <Dropdown bind:open={dropdownOpen} activeUrl={"/?t=" + ($current_topic?.id.toString() ?? "")}>
+            {#each topics as topic}
+                <DropdownItem href={"/?t=" + topic.id} on:click={() => (dropdownOpen = false)}>{topic.text}</DropdownItem>
+            {/each}
+        </Dropdown>
     {:else}
         <NavBrand href="/">
             <span
                 class="self-center whitespace-nowrap text-xl font-semibold dark:text-white"
             >
-                Japanese Daily Dialogue
+                Loading ...
             </span>
         </NavBrand>
     {/if}
@@ -48,7 +54,7 @@
         <NavHamburger />
     </div>
     <NavUl>
-        <NavLi href="https://github.com/edger-dev/demos/tree/main/based.cooking" target="_blank">GitHub</NavLi>
+        <NavLi href="https://github.com/edger-dev/demos/tree/main/dialogue" target="_blank">GitHub</NavLi>
         <NavLi href="https://edger.substack.com/" target="_blank">Blog</NavLi>
         <NavLi href="/about/">About</NavLi>
     </NavUl>

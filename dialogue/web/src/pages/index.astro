@@ -2,12 +2,10 @@
 import Layout from "@layouts/Layout.astro";
 import HomePanel from "@components/HomePanel.svelte";
 import { type Sentence } from '@islands/types';
-const data = {
-}
 
 ---
 
 <Layout title="Dialogue">
-    <HomePanel client:load slot="home" data={[]} />
+    <HomePanel client:load slot="home" />
 </Layout>
 

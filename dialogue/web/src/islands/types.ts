@@ -43,3 +43,16 @@ export const topics: Topic[] = [
         dialogue_count: 1050,
     },
 ];
+
+export const getTopic= function(id: number | string): null | Topic {
+    if (id == 0 || id == "") {
+        return null;
+    }
+    for (let i = 0; i < topics.length; i++) {
+        let topic = topics[i];
+        if (topic.id.toString() == id.toString()) {
+            return topic;
+        }
+    }
+    return null;
+}

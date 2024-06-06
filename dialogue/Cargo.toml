@@ -1,8 +1,8 @@
 [workspace.package]
 edition = "2021"
 license = "MIT"
-homepage = "https://github.com/edger-dev/demos/based.cooking"
-repository = "https://github.com/edger-dev/demos/based.cooking"
+homepage = "https://github.com/edger-dev/demos/dialogue"
+repository = "https://github.com/edger-dev/demos/dialogue"
 authors = ["YJ Park <yjpark@gmail.com>"]
 
 [workspace]

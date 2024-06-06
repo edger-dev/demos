@@ -16,7 +16,7 @@ pub struct Args {
 
 impl Args {
     pub const DEFAULT_DATA: &'static str = "../data/japanese-daily-dialogue/data";
-    pub const DEFAULT_OUTPUT: &'static str = "init.surql";
+    pub const DEFAULT_OUTPUT: &'static str = "../web/public/queries";
 
     pub fn data_path(&self) -> PathBuf {
         path_arg::unwrap_or_in_cwd(&self.data, &vec![Self::DEFAULT_DATA])

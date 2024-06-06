@@ -30,7 +30,7 @@ export const createConnectionOptions = function(options: ConnectionOptionsParams
         namespace: options.namespace ?? "based",
         database: options.database ?? "cooking",
         protocol: options.protocol ?? "mem",
-        hostname: options.hostname ?? "based.cooking",
+        hostname: options.hostname ?? "localhost",
         username: options.username ?? "root",
         password: options.password ?? "root",
         authMode: options.authMode ?? "none",

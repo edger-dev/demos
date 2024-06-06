@@ -45,5 +45,5 @@ export const hijack_home = function() {
         }
     }
      */
-    hijack_history("/", "Based.Cooking", null);
+    hijack_history("/", "Japanese Daily Dialogue", null);
 }

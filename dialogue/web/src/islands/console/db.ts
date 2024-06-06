@@ -10,13 +10,15 @@ export const ready = states.ready;
 export const init = async () => {
     if (!ready.get()) {
         const startTime = new Date();
+        /*
         const response = await fetch("/queries/init.surql");
         const init = await response.text();
         console.log("[db] fetch `init.surql`, took", new Date().getTime() - startTime.getTime(), "ms -> ", "[" + init.length + "]");
+         */
         const options = helper.createConnectionOptions({
         });
         states.connectionOptions.set(options);
-        await client.connect(init);
+        await client.connect();
         console.log("[db] ready ->", ready.get());
     }
 }
@@ -44,7 +46,15 @@ export const query_sentences = async function (query: string): Promise<Sentence[
     let res = await executeQuery(query);
     if (res.success && res.result) {
         console.info("[db] query_sentences succeed", res.execution_time, query, res.result);
-        return res.result;
+        return res.result.map(s => ({
+            id: {
+                t: s.id.id.t,
+                d: s.id.id.d,
+                n: s.id.id.n,
+            },
+            speaker: s.speaker,
+            text: s.text,
+        } as Sentence));
     } else {
         console.error("[db] query_sentences failed", res.execution_time, query, res.result)
         push_query_error(res);
