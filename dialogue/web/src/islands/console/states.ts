@@ -14,7 +14,7 @@ export const inited = atom(false);
 
 export const sentences = atom<Sentence[]>([]);
 
-export const libre_translate_url = atom("http://libretranslate.a13.yjpark.org/translate");
+export const libre_translate_url = atom("https://libretranslate.a13.yjpark.org/translate");
 
 export const toggle_console_visible = function () {
     if (!console_enabled.get()) {
