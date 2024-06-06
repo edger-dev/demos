@@ -23,8 +23,18 @@
     const translated = atom<null | string>(null);
 
     async function translate() {
+        if (navigator.clipboard) {
+            await navigator.clipboard.writeText(data.text);
+        }
         const result = await translate_jp_to_en(data.text);
         translated.set(result);
+    }
+
+    async function clearTranslated() {
+        if (navigator.clipboard) {
+            await navigator.clipboard.writeText(data.text);
+        }
+        translated.set(null);
     }
 
     router.subscribe(_ => {
@@ -39,7 +49,9 @@
     </div>
     <div class={is_self ? self_text_class : other_text_class}>
     {#if $translated}
-        <div id={`text_${data.id.t}_${data.id.d}_${data.id.n}`}>
+        <!-- svelte-ignore a11y-interactive-supports-focus -->
+        <!-- svelte-ignore a11y-click-events-have-key-events -->
+        <div on:click={clearTranslated} role="button" id={`text_${data.id.t}_${data.id.d}_${data.id.n}`}>
             {data.text}
         </div>
         <div class="text-sm mt-1 text-gray-700 dark:text-gray-300">
