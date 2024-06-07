@@ -35,9 +35,6 @@ export const to_furigana = async function(text: string): Promise<string> {
  */
 
 export const to_furigana = async function(text: string): Promise<string> {
-    const startTime = new Date();
-    const tokens = tokenize(text);
-    const result = tokens.toString();
-    console.error("[jp] to_furigana()", new Date().getTime() - startTime.getTime(), text, result);
-    return result;
+    //todo
+    return text;
 }

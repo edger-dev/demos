@@ -14,7 +14,6 @@
     "flowbite-svelte": "^0.46.1",
     "flowbite-svelte-icons": "^1.6.1",
     "libretranslate-ts": "^0.5.11",
-    "lindera-js": "^0.1.4",
     "micromark": "^4.0.0",
     "micromark-util-types": "^2.0.0",
     "nanostores": "^0.9.5",
