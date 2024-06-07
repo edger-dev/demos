@@ -1,5 +1,3 @@
-import { tokenize } from "lindera-js";
-
 import { atom } from "nanostores";
 import { sleep } from "radash";
 
