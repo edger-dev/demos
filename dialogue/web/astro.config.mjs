@@ -11,11 +11,11 @@ export default defineConfig({
     output: "static",
     vite: {
         optimizeDeps: {
-		    exclude: ['surrealdb.wasm', 'surrealql.wasm', '/dict/*'],
+		    exclude: ['surrealdb.wasm', 'surrealql.wasm', 'lindera.wasm'],
 	    },
         resolve: {
           preserveSymlinks: true
-        }
+        },
     },
     experimental: {
         contentCollectionCache: true,

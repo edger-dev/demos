@@ -13,8 +13,8 @@
     "flowbite": "^2.3.0",
     "flowbite-svelte": "^0.46.1",
     "flowbite-svelte-icons": "^1.6.1",
-    "kuromojin": "^3.0.0",
     "libretranslate-ts": "^0.5.11",
+    "lindera-js": "^0.1.4",
     "micromark": "^4.0.0",
     "micromark-util-types": "^2.0.0",
     "nanostores": "^0.9.5",
@@ -25,6 +25,7 @@
     "svelte": "^4.2.17",
     "svelte-table": "^0.6.3",
     "tailwindcss": "^3.4.3",
-    "typescript": "^5.4.5"
+    "typescript": "^5.4.5",
+    "vite-plugin-wasm": "^3.3.0"
   }
 }

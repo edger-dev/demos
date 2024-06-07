@@ -1,29 +1,43 @@
-import { default as Kuroshiro } from "@kuroshiro-browser/src/kuroshiro/core";
+import { tokenize } from "lindera-js";
+
 import { atom } from "nanostores";
 import { sleep } from "radash";
 
-const kuroshiro = atom<null | Kuroshiro>(null);
+/*
+const cached_tokenizer = atom<null | Tokenizer>(null);
 
 let initing = false;
 
-const init = async function () {
+const init = async function (): Promise<Tokenizer> {
     if (initing) {
-        while (kuroshiro.get() === null) {
+        while (cached_tokenizer.get() === null) {
             await sleep(100);
         }
+        return cached_tokenizer.get()!;
     } else {
         initing = true;
         const startTime = new Date();
-        const v = await Kuroshiro.buildAndInitWithKuromoji(true);
+        const t = await getTokenizer();
         console.error("[jp] init()", new Date().getTime() - startTime.getTime());
-        kuroshiro.set(v);
+        cached_tokenizer.set(t);
+        return t;
     }
 }
 
 export const to_furigana = async function(text: string): Promise<string> {
     const startTime = new Date();
-    await init();
-    const result = await kuroshiro.get().getFurigana(text);
+    const tokenizer = await init();
+    const tokens = await tokenizer.tokenize(text);
+    const result = tokens.toString();
+    console.error("[jp] to_furigana()", new Date().getTime() - startTime.getTime(), text, result);
+    return result;
+}
+ */
+
+export const to_furigana = async function(text: string): Promise<string> {
+    const startTime = new Date();
+    const tokens = tokenize(text);
+    const result = tokens.toString();
     console.error("[jp] to_furigana()", new Date().getTime() - startTime.getTime(), text, result);
     return result;
 }
