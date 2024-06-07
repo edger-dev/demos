@@ -3,7 +3,7 @@ show:
     npx wrangler pages deployment list
 
 copy-headers:
-    cp -v _headers dist/
+    # cp -v _headers dist/
 
 preview:
     just copy-headers

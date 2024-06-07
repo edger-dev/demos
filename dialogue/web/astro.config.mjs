@@ -11,7 +11,7 @@ export default defineConfig({
     output: "static",
     vite: {
         optimizeDeps: {
-		    exclude: ['surrealdb.wasm', 'surrealql.wasm'],
+		    exclude: ['surrealdb.wasm', 'surrealql.wasm', '/dict/*'],
 	    },
         resolve: {
           preserveSymlinks: true

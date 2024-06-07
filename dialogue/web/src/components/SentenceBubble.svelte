@@ -4,6 +4,7 @@
     import { atom } from "nanostores";
     import { Hr } from "flowbite-svelte";
     import { router } from "@islands/router";
+    import { to_furigana } from "@islands/console/jp";
 
     const common_top_class = "flex flex-col gap-0 mt-1";
     const self_top_class = common_top_class + " items-start";
@@ -20,7 +21,19 @@
     export let data: Sentence;
     const is_self = data.speaker == "A";
 
+    const furigana = atom<null | string>(null);
     const translated = atom<null | string>(null);
+
+    function getText() {
+        if (furigana.get()) {
+            return furigana.get();
+        }
+        return data.text;
+    }
+
+    let convert_furigana = to_furigana(data.text).then(x => {
+        furigana.set(x);
+    });
 
     async function translate() {
         if (navigator.clipboard) {
@@ -38,6 +51,7 @@
     }
 
     router.subscribe(_ => {
+        furigana.set(null);
         translated.set(null);
     });
 </script>
@@ -52,7 +66,7 @@
         <!-- svelte-ignore a11y-interactive-supports-focus -->
         <!-- svelte-ignore a11y-click-events-have-key-events -->
         <div on:click={clearTranslated} role="button" id={`text_${data.id.t}_${data.id.d}_${data.id.n}`}>
-            {data.text}
+            {getText()}
         </div>
         <div class="text-sm mt-1 text-gray-700 dark:text-gray-300">
         {$translated}
@@ -61,7 +75,7 @@
         <!-- svelte-ignore a11y-interactive-supports-focus -->
         <!-- svelte-ignore a11y-click-events-have-key-events -->
         <div on:click={translate} role="button" id={`text_${data.id.t}_${data.id.d}_${data.id.n}`}>
-            {data.text}
+            {getText()}
         </div>
     {/if}
     </div>
